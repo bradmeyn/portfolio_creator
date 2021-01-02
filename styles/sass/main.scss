@@ -39,52 +39,82 @@ body {
         border: 1px solid #ddd;
         padding: .5rem;
         font-size: .75rem;
+        text-align: center;
 
-        &--input {
+        &--search {
             border: 1px solid #ddd;
             margin: 0 1rem;
-            
-            
+            width: 20rem;
+           
         }
 
-        
+        &--amount {
+            border: 1px solid #ddd;
+            margin: 0 1rem;
+            text-align: center;
+        }
     }
 
-    &__input {
-        height: 100%;
-        width: 100%;
-        padding: .5rem;
-        border: none;
-        }
-
+    &__end {
+        @extend .table__item;
+        font-size: 1rem;
+        font-weight: 700;
+    }
 }
 
 
+
+.input {
+    height: 100%;
+    width: 100%;
+    padding: .5rem;
+    border: none;
+    
+    &--search {
+        @extend .input;
+        
+    }
+
+    &--currency {
+        text-align:center;
+        
+    }
+}
+
 .dropdown{
-    position: relative;
+    // display: none;
     
     &__menu {
         display: none;
-        z-index: 100;
+        background-color: red;
         font-size: .75rem;
     }
   
 }
 
 .dropdown__active {
+    display: block;
+    position: relative;
+    top:.25rem;
+    
     
     & .dropdown__menu {
+        background-color: #ffffff;
+        z-index: 100;
         display: inline;
         position: absolute;
-        top: -3px;
-        
         width: 100%;
-       
         border: 1px solid #ddd;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); 
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        
+        li{
+            list-style: none;
+            width: 100%;
+        }
 
         & .dropdown__result {
-           background-color: #ffffff;
+            display: block;
+            text-decoration: none;
             padding: .5rem;
             border: 1px solid #ddd;
             width: 100%;

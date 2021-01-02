@@ -1,54 +1,79 @@
 
 
 
-const inputs = document.querySelectorAll(".table__item--input");
-
 
 // const dropdownContent = document.querySelectorAll("dropdown__content");
 const dropdownResults = document.querySelectorAll(".dropdown__results");
-const searchBoxes = document.querySelectorAll(".searchBox");
-
-searchBoxes.forEach(box => {
-    box.innerHTML = `
-    <input type="text" class="table__input">
-    <div class="dropdown">
-        <div class="dropdown__menu">
-        </div
-    </div>
-    `;
-});
+const searchInputs = document.querySelectorAll(".input--search");
+const dropdowns = document.querySelectorAll(".dropdown");
 const dropdownMenu = document.querySelector(".dropdown__menu");
 
 
-
 const onInput = event => {
-    // function to search array for search value
-    console.log(investments);
-    dropdownMenu.innerHTML = "";
-
-        dropdown.classList.add("dropdown__active");
+    // console.log(event.target.closest("td").nextSibling);
+    dropdowns.forEach(dropdown => {
+        dropdown.classList.remove("dropdown__active");
+    });
+    
+    let dropdownParent = event.target.nextElementSibling;
+    let dropdownList = dropdownParent.firstElementChild;
+        //reset dropdown menu
+        dropdownList.innerHTML = "";
+        //add active class to display
 
     for (let investment of investments) {
+        const li = document.createElement("li");
+        let name = investment.name.toLowerCase();
+        let code = investment.code.toLowerCase();
+        let search = event.target.value.toLowerCase();
 
-        const div = document.createElement("div");
+        // search input value compared to names & codes
+        if(name.includes(search) || code.includes(search)){
+            dropdownParent.classList.add("dropdown__active");
+            //add result if match
+            li.innerHTML = `<a class="dropdown__result"> ${investment.name} (${investment.code})</a>`;
+            //add listener to add selected option into the input
+            li.addEventListener("click", () => {
+            dropdownParent.classList.remove("dropdown__active");
+            dropdownList.innerHTML = "";
+            event.target.value = investment.name;
+            event.target.closest("tr").children[1].innerHTML = investment.code;
+            event.target.closest("tr").children[4].innerHTML = (investment.cost * 100).toFixed(2) +"%";
+            console.log(event.target.closest("tr").children[2].firstElementChild)
+            updateCost(event.target.closest("tr").children[2].firstElementChild);
+        })
 
-        div.innerHTML = `<div class="dropdown__result"> ${investment.name} (${investment.code})</div>`;
-
-        dropdownMenu.appendChild(div);
+        dropdownList.appendChild(li);
+        }
     }
-
 };
 
-inputs.forEach(input => {
+//add onInput to each search with menu delay
+searchInputs.forEach(input => {
     input.addEventListener("input", debounce(onInput, 500));
 });
 
 
+// remove active class when document is clicked
+document.addEventListener("click", event => {
+    dropdowns.forEach(dropdown => {
+        dropdown.classList.remove("dropdown__active");
+    });
+});
 
 
 
+const currencyInputs = document.querySelectorAll(".input--currency");
 
-const dropdown = document.querySelector(".dropdown");
+currencyInputs.forEach(input => {
+    
+    input.addEventListener("change",(e) => {
+        console.log(e.target);
+        updateCost(e.target);
+        input.value = toCurrency(input.value);
+    // console.log(input.value * parseFloat(input.closest("tr").children[4].innerHTML));
+    });
+});
 
 
 

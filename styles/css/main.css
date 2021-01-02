@@ -32,46 +32,72 @@ body {
   width: 6rem;
 }
 
-.table__item {
+.table__item, .table__end {
   border: 1px solid #ddd;
   padding: .5rem;
   font-size: .75rem;
+  text-align: center;
 }
 
-.table__item--input {
+.table__item--search {
   border: 1px solid #ddd;
   margin: 0 1rem;
+  width: 20rem;
 }
 
-.table__input {
+.table__item--amount {
+  border: 1px solid #ddd;
+  margin: 0 1rem;
+  text-align: center;
+}
+
+.table__end {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.input, .input--search {
   height: 100%;
   width: 100%;
   padding: .5rem;
   border: none;
 }
 
-.dropdown {
-  position: relative;
+.input--currency {
+  text-align: center;
 }
 
 .dropdown__menu {
   display: none;
-  z-index: 100;
+  background-color: red;
   font-size: .75rem;
 }
 
+.dropdown__active {
+  display: block;
+  position: relative;
+  top: .25rem;
+}
+
 .dropdown__active .dropdown__menu {
+  background-color: #ffffff;
+  z-index: 100;
   display: inline;
   position: absolute;
-  top: -3px;
   width: 100%;
   border: 1px solid #ddd;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+.dropdown__active .dropdown__menu li {
+  list-style: none;
+  width: 100%;
+}
+
 .dropdown__active .dropdown__menu .dropdown__result {
-  background-color: #ffffff;
+  display: block;
+  text-decoration: none;
   padding: .5rem;
   border: 1px solid #ddd;
   width: 100%;
