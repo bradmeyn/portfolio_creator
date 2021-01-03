@@ -45,13 +45,40 @@ body {
             border: 1px solid #ddd;
             margin: 0 1rem;
             width: 20rem;
-           
+           position: relative;
+            
         }
 
         &--amount {
             border: 1px solid #ddd;
             margin: 0 1rem;
             text-align: center;
+        }
+
+        &--delete {
+            display: flex;
+            align-items: center;
+            font-size: .1rem;
+            text-align: center;
+            
+
+            .delete-btn {
+                display: flex;
+                align-items: center;
+                padding: .5rem;
+                cursor: pointer;
+                border: none;
+                background-color: #ffffff;
+
+                &:hover {
+                    color: tomato;
+                }
+
+                i {
+                    font-size: 1.25rem;
+                    padding-right: 4px;
+                }
+            }
         }
     }
 
@@ -62,7 +89,13 @@ body {
     }
 }
 
-
+.search-icon {
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    color: grey;
+    font-size: 1.25rem;
+}
 
 .input {
     height: 100%;
@@ -72,7 +105,7 @@ body {
     
     &--search {
         @extend .input;
-        
+        padding-left: 2rem;
     }
 
     &--currency {

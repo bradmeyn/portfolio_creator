@@ -41,6 +41,7 @@ const onInput = event => {
             event.target.closest("tr").children[4].innerHTML = (investment.cost * 100).toFixed(2) +"%";
             console.log(event.target.closest("tr").children[2].firstElementChild)
             updateCost(event.target.closest("tr").children[2].firstElementChild);
+            updateTotals();
         })
 
         dropdownList.appendChild(li);
@@ -71,6 +72,7 @@ currencyInputs.forEach(input => {
         console.log(e.target);
         updateCost(e.target);
         input.value = toCurrency(input.value);
+        updateTotals();
     // console.log(input.value * parseFloat(input.closest("tr").children[4].innerHTML));
     });
 });

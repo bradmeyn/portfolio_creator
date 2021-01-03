@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Creator</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="styles/css/main.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 </head>
@@ -23,46 +24,36 @@
                         <th class="table__head">Weight (%)</th>
                         <th class="table__head">Cost (%)</th>
                         <th class="table__head">Cost ($)</th>
+                   
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="table__item--search">
-                            <input type="text" class="input--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
                             <div class="dropdown">
                                 <ul class="dropdown__menu">
                                 </div>
                             </div>
                         </td>
                         <td class="table__item code"></td> 
-                        <td class="table__item--amount"><input type="text" class="input input--currency" value="$0.00"></td>
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
                         <td class="table__item weight">0%</td>
                         <td class="table__item cost__percentage">0.00%</td>
                         <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
                     </tr>
-                    <tr>
-                        <td class="table__item--search">
-                            <input type="text" class="input--search">
-                            <div class="dropdown">
-                                <ul class="dropdown__menu">
-                                </div>
-                            </div>
-                        </td>
-                        <td class="table__item code"></td> 
-                        <td class="table__item--amount"><input type="text" class="input input--currency" value="$0.00"></td>
-                        <td class="table__item weight">0%</td>
-                        <td class="table__item cost__percentage">0.00%</td>
-                        <td class="table__item cost__currency">$0.00</td>
-                    </tr>
+                   
                   
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="2" class="table__end">Total</td>
-                        <td class="table__end"></td>
-                        <td class="table__end">0%</td>
-                        <td class="table__end">0.00%</td>
-                        <td class="table__end">$0.00</td>
+                        <td class="table__end" id="totalAmount" >$0.00</td>
+                        <td class="table__end" id="totalWeight">100%</td>
+                        <td class="table__end" id="totalCostPercent">0.00%</td>
+                        <td class="table__end" id="totalCostDollar">$0.00</td>
                     </tr>
                 </tfoot>
                 
