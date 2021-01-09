@@ -6,6 +6,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,11 +18,19 @@ body {
 
 
 .table{
-    margin: 5rem auto;
     border-collapse: collapse;
     z-index: 1;
-    .searchBox {
+    
+    
 
+    &__container {
+        
+        margin: 10rem auto;
+        width: 50rem;
+         
+    }
+    .searchBox {
+        
         width: 20rem;
     }
 
@@ -56,27 +68,28 @@ body {
         }
 
         &--delete {
-            display: flex;
-            align-items: center;
+            // display: flex;
+            // align-items: center;
             font-size: .1rem;
             text-align: center;
-            
+          
 
             .delete-btn {
                 display: flex;
                 align-items: center;
                 padding: .5rem;
+                
                 cursor: pointer;
                 border: none;
                 background-color: #ffffff;
-
+                
                 &:hover {
                     color: tomato;
                 }
 
                 i {
                     font-size: 1.25rem;
-                    padding-right: 4px;
+                    margin-right: 4px;
                 }
             }
         }
@@ -91,7 +104,7 @@ body {
 
 .search-icon {
     position: absolute;
-    top: 6px;
+    top: 8px;
     left: 5px;
     color: grey;
     font-size: 1.25rem;
@@ -161,4 +174,16 @@ body {
     
 }
 
+.add-btn {
+    background-color: rgb(43, 100, 223);
+    color: #ffffff;
+    border: none;
+    margin: .5rem;
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
 
+    &:hover {
+        background-color: rgb(76, 125, 231);
+    }
+}

@@ -2,17 +2,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 .table {
-  margin: 5rem auto;
   border-collapse: collapse;
   z-index: 1;
+}
+
+.table__container {
+  margin: 10rem auto;
+  width: 50rem;
 }
 
 .table .searchBox {
@@ -53,23 +60,13 @@ body {
 }
 
 .table__item--delete {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   font-size: .1rem;
   text-align: center;
 }
 
 .table__item--delete .delete-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: .5rem;
   cursor: pointer;
   border: none;
@@ -82,7 +79,7 @@ body {
 
 .table__item--delete .delete-btn i {
   font-size: 1.25rem;
-  padding-right: 4px;
+  margin-right: 4px;
 }
 
 .table__end {
@@ -92,7 +89,7 @@ body {
 
 .search-icon {
   position: absolute;
-  top: 6px;
+  top: 8px;
   left: 5px;
   color: grey;
   font-size: 1.25rem;
@@ -132,8 +129,7 @@ body {
   position: absolute;
   width: 100%;
   border: 1px solid #ddd;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .dropdown__active .dropdown__menu li {
@@ -153,4 +149,18 @@ body {
 .dropdown__active .dropdown__menu .dropdown__result:hover {
   background-color: salmon;
 }
-/*# sourceMappingURL=main.css.map */
+
+.add-btn {
+  background-color: #2b64df;
+  color: #ffffff;
+  border: none;
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #4c7de7;
+}
+/*# sourceMappingURL=main.min.css.map */
