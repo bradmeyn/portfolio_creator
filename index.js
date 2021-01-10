@@ -5,7 +5,7 @@
 // const dropdownMenu = document.querySelector(".dropdown__menu");
 
 
-const table = document.querySelector(".table");
+const tables = document.querySelectorAll(".table");
 
 
 const onInput = event => {
@@ -41,7 +41,7 @@ const onInput = event => {
             event.target.value = investment.name;
             event.target.closest("tr").children[1].innerHTML = investment.code;
             event.target.closest("tr").children[4].innerHTML = (investment.cost * 100).toFixed(2) +"%";
-            console.log(event.target.closest("tr").children[2].firstElementChild)
+
             updateCost(event.target.closest("tr").children[2].firstElementChild);
             updateTotals();
         })
@@ -53,16 +53,43 @@ const onInput = event => {
 
 
 //update currency inputs
-table.addEventListener("input", (e) => {
+tables.forEach(table => {
 
-    if(e.target.classList.contains("input--search")){
+    table.addEventListener("input", (e) => {
 
-        onInput(e);
-        updateCost(e.target);
-        updateTotals();
-    }  
+        if(e.target.classList.contains("input--search")){
+
+            onInput(e);
+            updateCost(e.target);
+            updateTotals();
+        }  
+    });
+
+    table.addEventListener("change", (e) => {
+
+        if(e.target.classList.contains("input--currency")){
+            updateCost(e.target);
+            e.target.value = toCurrency(e.target.value);
+            updateCost(e.target);
+            updateTotals();
+        }  
+    });
+
+
+    // delete button functionality
+    table.addEventListener("click", (e)=> {
+        let selector = "i";
+        // console.log(e.target.innerHTML.includes(selector))
+        if(e.target.closest(".delete-btn")){
+            e.target.closest("tr").remove();
+            console.log("hey")
+            updateTotals();
+            return;
+        };
+    
+    }, true);
+
 });
-
 
 
 // remove active class when document is clicked
@@ -75,23 +102,12 @@ document.addEventListener("click", event => {
 
 
 
-//update currency inputs
-table.addEventListener("change", (e) => {
-
-    if(e.target.classList.contains("input--currency")){
-        updateCost(e.target);
-        e.target.value = toCurrency(e.target.value);
-        updateCost(e.target);
-        updateTotals();
-    }  
-});
-
-
-
 let ctx = document.getElementById("main-chart");
-Chart.defaults.global.defaultFontColor = "#2f394b";
+// Chart.defaults.global.defaultFontColor = "#2f394b";
 
-Chart.defaults.global.defaultFontStyle = "bold";
+// Chart.defaults.global.defaultFontStyle = "bold";
+
+
 
 Chart.scaleService.updateScaleDefaults("linear", {
   ticks: {
@@ -104,16 +120,25 @@ Chart.scaleService.updateScaleDefaults("linear", {
 let chart = new Chart(ctx, {
   // The type of chart we want to create
 
-  type: "bar",
-
+  type: "line",
+  
   // The data for our dataset
   data: {
     datasets: [{
-        label: "Initial Investment",
+        label: "Portfolio One",
         data: [],
-        backgroundColor: "#113C6C",
+        borderColor: "#113C6C",
+        backgroundColor: "transparent",
         width: "100%",
-
+        pointRadius: "0"
+      },
+      {
+        label: "Portfolio Two",
+        data: [],
+        borderColor: "Orange",
+        backgroundColor: "transparent",
+        width: "100%",
+        pointRadius: "0"
       },
     ],
   },
@@ -140,8 +165,7 @@ let chart = new Chart(ctx, {
 
       yAxes: [{
 
-
-        stacked: true,
+        stacked: false,
         ticks: {
           maxTicksLimit: 6,
           beginAtZero: true,
@@ -159,7 +183,7 @@ let chart = new Chart(ctx, {
       }, ],
     },
     legend: {
-      display: false,
+      display: true,
     },
     chart: {
 
@@ -172,27 +196,41 @@ let chart = new Chart(ctx, {
 
 let compound = function () {
 
+    let portfolioAmountOne = toNumber(document.getElementById("amountOne").innerText);
+    let portfolioAmountTwo = toNumber(document.getElementById("amountTwo").innerText);
+
+    let portfolioCostOne = toNumber(document.getElementById("costPercentageOne").innerText);
+    let portfolioCostTwo = toNumber(document.getElementById("costPercentageTwo").innerText);
+
+    console.log(toNumber(portfolioCostOne));
+
     let years = [1,2,3,4,5,6,7,8,9,10];
-    let portfolio = totalAmount;
-    let cost = 1000;
-    let total = 0;
+    
   
     let x = 0;
     let n = 10;
-    let ongoingCosts = [];
+
+    let costOne = 0;
+    let costTwo = 0;
+    let totalOne = [];
+    let totalTwo = [];
 
     while (x < n) {
   
       //Push initial value to the chart
-      
+      console.log((parseFloat(costOne + portfolioCostOne * portfolioAmountOne)).toFixed(2))
+      costOne = costOne + portfolioCostOne * portfolioAmountOne;
+      totalOne.push(costOne);
 
-      total = total + cost;
-      ongoingCosts.push(total);
+      costTwo = costTwo + portfolioCostTwo * portfolioAmountTwo;
+      totalTwo.push(costTwo);
+      
       x++;
     }
   
   
-    chart.data.datasets[0].data = ongoingCosts;
+    chart.data.datasets[0].data = totalOne;
+    chart.data.datasets[1].data = totalTwo;
     
     chart.data.labels = years;
     chart.update();

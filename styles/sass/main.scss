@@ -16,27 +16,38 @@ html {
     padding: 0;
 }
 
+header, main {
+    margin: 3rem 3rem;
+}
+
+h1 {
+    margin-bottom: .5rem;
+}
+
+
+h2 {
+    margin-bottom: .5rem;
+}
+
+
 
 .table{
     border-collapse: collapse;
     z-index: 1;
     
-    
-
     &__container {
-        
-        margin: 10rem auto;
+        margin-bottom: 4rem;
         width: 50rem;
-         
     }
+
     .searchBox {
         
         width: 20rem;
     }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
+    // tr:nth-child(even) {
+    //     background-color: #f2f2f2;
+    // }
 
     &__head {
         background-color: lightsalmon;
@@ -178,7 +189,7 @@ html {
     background-color: rgb(43, 100, 223);
     color: #ffffff;
     border: none;
-    margin: .5rem;
+    margin:  .5rem;
     padding: .5rem;
     border-radius: 5px;
     cursor: pointer;
@@ -186,4 +197,8 @@ html {
     &:hover {
         background-color: rgb(76, 125, 231);
     }
+}
+
+.chart-container {
+    width: 50rem;
 }

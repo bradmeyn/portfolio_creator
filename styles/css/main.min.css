@@ -12,22 +12,30 @@ html {
   padding: 0;
 }
 
+header, main {
+  margin: 3rem 3rem;
+}
+
+h1 {
+  margin-bottom: .5rem;
+}
+
+h2 {
+  margin-bottom: .5rem;
+}
+
 .table {
   border-collapse: collapse;
   z-index: 1;
 }
 
 .table__container {
-  margin: 10rem auto;
+  margin-bottom: 4rem;
   width: 50rem;
 }
 
 .table .searchBox {
   width: 20rem;
-}
-
-.table tr:nth-child(even) {
-  background-color: #f2f2f2;
 }
 
 .table__head {
@@ -162,5 +170,9 @@ html {
 
 .add-btn:hover {
   background-color: #4c7de7;
+}
+
+.chart-container {
+  width: 50rem;
 }
 /*# sourceMappingURL=main.min.css.map */

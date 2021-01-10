@@ -6,7 +6,7 @@ const totalCostPercent = document.getElementById("totalCostPercent");
 const totalCostDollar = document.getElementById("totalCostDollar");
 
 let deleteBtns = document.querySelectorAll(".delete-btn");
-const addBtn = document.querySelector(".add-btn");
+const addBtn = document.querySelectorAll(".add-btn");
 
 let tBody = document.querySelector("tbody");
 
@@ -48,77 +48,100 @@ const updateCost = (amount) => {
 
 //update totals row
  const updateTotals = () => {
-    let rows = document.querySelectorAll("tr");
-    let portfolioTotal = 0;
-    let costTotal = 0;
-    
-    rows.forEach(row => {
-        
-        if(row.closest("tbody")){
-            portfolioTotal = portfolioTotal + numeral(row.children[2].children[0].value).value();
-            costTotal = costTotal + numeral(row.children[5].innerText).value();
-        };
+    let tbodies = document.querySelectorAll("tbody");
 
-        if(numeral(costTotal/portfolioTotal).value() == null){
-            totalCostPercent.innerText = "0.00%";
+    tbodies.forEach(tbody => {
+        console.log();
+
+        let totalAmount = 0;
+        let totalWeight = 0;
+        let totalCostPercent = 0
+        let totalCostDollar = 0;
+        
+        let rows = tbody.querySelectorAll("tr");
+      
+
+        rows.forEach(row => {
+            
+                totalAmount =  totalAmount + numeral(row.children[2].children[0].value).value();
+                totalCostDollar = totalCostDollar + numeral(row.children[5].innerText).value();
+          
+        });
+
+        tbody.nextElementSibling.children[0].children[1].innerText = toCurrency(totalAmount);
+
+        
+        
+        if(!(totalCostDollar/totalAmount)){
+   
+            tbody.nextElementSibling.children[0].children[3].innerText = "0.00%";
         } else {
-            totalCostPercent.innerText = (numeral(costTotal/portfolioTotal).value()*100).toFixed(2) +"%";
+            tbody.nextElementSibling.children[0].children[3].innerText = (totalCostDollar/totalAmount * 100).toFixed(2) +"%";
         }
         
-        totalAmount.innerText = toCurrency(portfolioTotal);
-        totalCostDollar.innerText = toCurrency(costTotal);
-        // totalCostPercent.innerText = portfolioTotal;
-    });
+        tbody.nextElementSibling.children[0].children[4].innerText = toCurrency(totalCostDollar);
 
-    rows.forEach(row => {
 
-        if(row.closest("tbody")){
-            if(numeral(costTotal/portfolioTotal).value() == null){
-                console.log(true);
-                row.children[3].innerText = "0%";
+        rows.forEach(row => {
+
+            let rowAmount = numeral(row.children[2].children[0].value).value();
+           
+
+
+
+            if(!(rowAmount/totalAmount)){
+                row.children[3].innerText = "0.00%"
+                
             } else {
-                row.children[3].innerText =(numeral(row.children[2].children[0].value).value()/portfolioTotal).toFixed(4)*100 +"%";
+                row.children[3].innerText = (rowAmount/totalAmount * 100).toFixed(2) +"%";
             }
-        };
-    })
- }
 
-// delete button functionality
-tBody.addEventListener("click", (e)=> {
-    let selector = "i";
-    // console.log(e.target.innerHTML.includes(selector))
-    if(e.target.closest(".delete-btn")){
-        e.target.closest("tr").remove();
-        console.log("hey")
-        updateTotals();
-        return;
-    };
-  
-}, true);
+    
+                    rowWeight = (rowAmount/totalAmount).toFixed(2) + "%";
  
 
-//add button functionality
-addBtn.addEventListener("click", () => {
-    const tableBody = document.querySelector("tbody");
-    const row = document.createElement("tr");
-    row.innerHTML = `<td class="table__item--search">
-    <i class="las la-search search-icon"></i>
-    <input type="text" class="input--search" placeholder="Search Investment">
-    <div class="dropdown">
-        <ul class="dropdown__menu">
-        </div>
-    </div>
-</td>
-<td class="table__item code"></td> 
-<td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
-<td class="table__item weight">0%</td>
-<td class="table__item cost__percentage">0.00%</td>
-<td class="table__item cost__currency">$0.00</td>
-<td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>`;
+         
+        })
 
-    tableBody.appendChild(row);
+    });
+
+
+   
+    compound();
+ 
+};
+
+
+ addBtn.forEach(button => {
+
+    button.addEventListener("click", (e) => {
+
+        const tableBody = e.target.parentElement.firstElementChild.children[1];
+        document.querySelector("tbody");
+        const row = document.createElement("tr");
+        row.innerHTML = `<td class="table__item--search">
+        <i class="las la-search search-icon"></i>
+        <input type="text" class="input--search" placeholder="Search Investment">
+        <div class="dropdown">
+            <ul class="dropdown__menu">
+            </div>
+        </div>
+    </td>
+    <td class="table__item code"></td> 
+    <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+    <td class="table__item weight">0%</td>
+    <td class="table__item cost__percentage">0.00%</td>
+    <td class="table__item cost__currency">$0.00</td>
+    <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>`;
     
-});
+        tableBody.appendChild(row);
+        
+    });
+    
+
+ });
+
+//add button functionality
 
 
 // //update currency inputs

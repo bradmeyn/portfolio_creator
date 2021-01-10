@@ -11,11 +11,17 @@
 </head>
 <body>
 
-    <header></header>
+    <header>
+        <h1>Portfolio Comparison</h1>
+        <p>Search your investments and enter amounts to compare costs over a 10 year period</p>
+
+    </header>
 
     
     <main>
+        <h2>Portfolio One</h2>
         <div class="table__container">
+            
             <table class="table">
                 <thead>
                     <tr>
@@ -45,23 +51,136 @@
                         <td class="table__item cost__currency">$0.00</td>
                         <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
                     </tr>
-                   
+                    <tr>
+                        <td class="table__item--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
+                            <div class="dropdown">
+                                <ul class="dropdown__menu">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table__item code"></td> 
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+                        <td class="table__item weight">0%</td>
+                        <td class="table__item cost__percentage">0.00%</td>
+                        <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td class="table__item--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
+                            <div class="dropdown">
+                                <ul class="dropdown__menu">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table__item code"></td> 
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+                        <td class="table__item weight">0%</td>
+                        <td class="table__item cost__percentage">0.00%</td>
+                        <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
+                    </tr>
                   
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="2" class="table__end">Total</td>
-                        <td class="table__end" id="totalAmount" >$0.00</td>
-                        <td class="table__end" id="totalWeight">100%</td>
-                        <td class="table__end" id="totalCostPercent">0.00%</td>
-                        <td class="table__end" id="totalCostDollar">$0.00</td>
+                        <td class="table__end totalAmount" id="amountOne" >$0.00</td>
+                        <td class="table__end totalWeight">100%</td>
+                        <td class="table__end totalCostPercent" id="costPercentageOne">0.00%</td>
+                        <td class="table__end totalCostDollar">$0.00</td>
                     </tr>
                 </tfoot>
                 
             </table>
             <button class="add-btn">Add Investment</button>
         </div>
+        <h2>Portfolio Two</h2>
+        <div class="table__container">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table__head">Name</th>
+                        <th class="table__head">Code</th> 
+                        <th class="table__head">Amount</th>
+                        <th class="table__head">Weight (%)</th>
+                        <th class="table__head">Cost (%)</th>
+                        <th class="table__head">Cost ($)</th>
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table__item--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
+                            <div class="dropdown">
+                                <ul class="dropdown__menu">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table__item code"></td> 
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+                        <td class="table__item weight">0%</td>
+                        <td class="table__item cost__percentage">0.00%</td>
+                        <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td class="table__item--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
+                            <div class="dropdown">
+                                <ul class="dropdown__menu">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table__item code"></td> 
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+                        <td class="table__item weight">0%</td>
+                        <td class="table__item cost__percentage">0.00%</td>
+                        <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
+                    </tr>
+                    <tr>
+                        <td class="table__item--search">
+                            <i class="las la-search search-icon"></i>
+                            <input type="text" class="input--search" placeholder="Search Investment">
+                            <div class="dropdown">
+                                <ul class="dropdown__menu">
+                                </div>
+                            </div>
+                        </td>
+                        <td class="table__item code"></td> 
+                        <td class="table__item--amount"><input type="text" class="input input--currency" placeholder="Amount"></td>
+                        <td class="table__item weight">0%</td>
+                        <td class="table__item cost__percentage">0.00%</td>
+                        <td class="table__item cost__currency">$0.00</td>
+                        <td class="table__item--delete"><button class="delete-btn"><i class="lar la-trash-alt"></i>Remove</button></td>
+                    </tr>
+                  
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="table__end">Total</td>
+                        <td class="table__end totalAmount" id="amountTwo" >$0.00</td>
+                        <td class="table__end totalWeight">100%</td>
+                        <td class="table__end totalCostPercent" id="costPercentageTwo">0.00%</td>
+                        <td class="table__end totalCostDollar">$0.00</td>
+                    </tr>
+                </tfoot>
+                
+            </table>
+            <button class="add-btn">Add Investment</button>
+        </div>
+
+       
         <div class="chart-container">
+            <h2>Total Cost over 10 Years</h3>
             <canvas class="outcome__chart" id="main-chart"></canvas>
           </div>
         
